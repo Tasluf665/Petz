@@ -1,31 +1,35 @@
 @extends('master')
 @section('content')
-<div class="custom-product"> 
-  <div class="col-sm-10">
+<div class="custom-product">
+  <div class="col-lg-30 justify-content-center d-flex">
     <div class="trending-wrapper">
-        <h4>My orders</h4>
-        @foreach ($orders as $item)
-        <div class="row searched-item cart-list-devider">
-            <div class="col-sm-3">
-                <a href="detail/{{ $item->id }}">
-                    <img class="trending-image" src="{{ $item->gallery }}" alt="">
-                </a>
-            </div>    
+      <h4 class=" justify-content-center d-flex my-4">My orders</h4>
 
-            <div class="col-sm-4">
-                  <div class="">
-                    <h2>Name : {{ $item->name}}</h2>
-                    <h5>Delivery Status : {{ $item->status}}</h5>
-                    <h5>Address : {{ $item->address}}</h5>
-                    <h5>Payment status : {{ $item->payment_status}}</h5>
-                    <h5>Payment method : {{ $item->payment_method}}</h5>
-
-                  </div>  
-            </div>      
-            </div>   
-            @endforeach
+      @foreach ($orders as $item)
+      <div class="card mb-3" style="max-width: 740px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{ $item->gallery }}" class="img-fluid rounded-start" alt="...">
           </div>
-      </div>
+          <div class="col-md-8">
+            <div class="card-body ms-4">
+              <h5 class="card-title">{{ $item->name}}</h5>
+              <p class="card-text mt-3">Your order is {{ $item->status}}</p>
+              <p class="card-text">Product will be deliver in {{ $item->address}}</p>
+              <p class="card-text d-flex" style="background-color: tomato;">
+              <div class="d-flex flex-row justify-content-between align-items-center">
+                <small class="text-muted">Status: {{ $item->payment_status}}</small>
+                <small class="text-muted">{{ $item->payment_method}}</small>
+              </div>
 
-   </div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endforeach
+    </div>
+  </div>
+
+</div>
 @endsection
